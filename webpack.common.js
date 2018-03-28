@@ -4,7 +4,7 @@ var path = require('path'),
   CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['whatwg-fetch', './src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',

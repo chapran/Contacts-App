@@ -1,0 +1,30 @@
+[
+  {
+    "id": 0,
+    "firstname": "Andriy",
+    "lastname": "Chapran",
+    "email": "example@gmail.com",
+    "tel": "000567"
+  },
+  {
+    "id": 1,
+    "firstname": "Roman",
+    "lastname": "Ivanov",
+    "email": "ivanov@gmail.com",
+    "tel": "000500"
+  },
+  {
+    "id": 2,
+    "firstname": "David",
+    "lastname": "Smith",
+    "email": "dav@mail.com",
+    "tel": "000243"
+  },
+  {
+    "id": 3,
+    "firstname": "Olga",
+    "lastname": "Smirnova",
+    "email": "o@e.com",
+    "tel": "12415567"
+  }
+]

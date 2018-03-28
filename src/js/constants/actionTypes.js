@@ -1,0 +1,3 @@
+export const REQUEST_CONTACTS = 'REQUEST_CONTACTS';
+export const LOAD_CONTACTS = 'LOAD_CONTACTS';
+export const SHOW_ERROR = 'SHOW_ERROR';

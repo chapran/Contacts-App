@@ -1,19 +1,24 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './modules/Home';
+import { Provider } from 'react-redux';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import store from './store';
+import Home from './modules/Home';
 
 function App() {
   return (
-    <MuiThemeProvider>
-      <BrowserRouter>
-        <Fragment>
-          <Switch>
-            <Route path='/' component={Home} />
-          </Switch>
-        </Fragment>
-      </BrowserRouter>
-    </MuiThemeProvider>
+    <Provider store={store}>
+      <MuiThemeProvider>
+        <BrowserRouter>
+          <Fragment>
+            <Switch>
+              <Route path='/' exact component={Home} />
+            </Switch>
+          </Fragment>
+        </BrowserRouter>
+      </MuiThemeProvider>
+    </Provider>
   );
 }
 
