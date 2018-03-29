@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
 import Home from './modules/Home';
+import ContactPreview from './modules/ContactPreview';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Fragment>
             <Switch>
               <Route path='/' exact component={Home} />
+              <Route path='/preview/:id' exact component={ContactPreview} />
             </Switch>
           </Fragment>
         </BrowserRouter>

@@ -4,7 +4,7 @@ var path = require('path'),
   CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: ['whatwg-fetch', './src/index.js'],
+  entry: ['whatwg-fetch', 'babel-polyfill', './src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
@@ -66,7 +66,8 @@ module.exports = {
       template: './src/index.pug'
     }),
     new CopyWebpackPlugin([
-      './src/assets/img/favicon.png'
+      './src/assets/img/favicon.png',
+      './src/data'
     ])
   ]
 }

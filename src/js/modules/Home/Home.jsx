@@ -4,13 +4,13 @@ import ContactsList from '_js/modules/ContactsList';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <Fragment>
       <AppBar
         title='All Contacts'
         showMenuIconButton={false} />
-      <Paper className={container} children={<ContactsList />} />
+      <Paper className={container} children={<ContactsList contacts={props.contacts} />} />
     </Fragment>
   );
 };
