@@ -4,7 +4,10 @@
     "firstname": "Andriy",
     "lastname": "Chapran",
     "email": "example@gmail.com",
-    "tel": "000567"
+    "tel": "000567",
+    "favorite": false,
+    "workplace": "Leobit LLC",
+    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi. Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque. Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio."
   },
   {
     "id": 1,
@@ -12,20 +15,26 @@
     "lastname": "Ivanov",
     "email": "ivanov@gmail.com",
     "tel": "000500",
-    "favorite": true
+    "favorite": false,
+    "workplace": "Smart Whatever",
+    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa."
   },
   {
     "id": 2,
     "firstname": "David",
     "lastname": "Smith",
     "email": "dav@mail.com",
-    "tel": "000243"
+    "tel": "000243",
+    "favorite": true,
+    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa."
   },
   {
     "id": 3,
     "firstname": "Olga",
     "lastname": "Smirnova",
     "email": "o@e.com",
-    "tel": "12415567"
+    "tel": "12415567",
+    "favorite": false,
+    "workplace": "My company"
   }
 ]

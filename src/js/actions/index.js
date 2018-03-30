@@ -1,4 +1,4 @@
-import { REQUEST_CONTACTS, LOAD_CONTACTS, SHOW_ERROR } from '_js/constants/actionTypes'
+import { REQUEST_CONTACTS, LOAD_CONTACTS, SHOW_ERROR, TOGGLE_FAVORITE } from '_js/constants/actionTypes'
 import { CONTACTS_URL } from '_js/constants/endpoints';
 
 export const requestContacts = () => ({
@@ -22,6 +22,15 @@ export const fetchContacts = () => async (dispatch) => {
     dispatch(setError());
   } else {
     const parsedData = await res.json();
-    dispatch(loadContacts(parsedData))
+    
+    // just a simulation of slower connection
+    setTimeout(() => {
+      dispatch(loadContacts(parsedData))
+    }, 2000)
   }
 }
+
+export const toggleFavorite = (id) => ({
+  type: TOGGLE_FAVORITE,
+  id
+})
