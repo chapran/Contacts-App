@@ -1,6 +1,6 @@
 {
   "name": "contacts-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple React/Redux application for managing contacts",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "babel-polyfill": "^6.26.0",
     "material-ui": "^0.20.0",
     "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

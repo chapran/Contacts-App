@@ -1,4 +1,4 @@
-import { REQUEST_CONTACTS, LOAD_CONTACTS, SHOW_ERROR, TOGGLE_FAVORITE } from '_js/constants/actionTypes'
+import { REQUEST_CONTACTS, LOAD_CONTACTS, SHOW_ERROR, TOGGLE_FAVORITE, DELETE_CONTACT } from '_js/constants/actionTypes'
 import { CONTACTS_URL } from '_js/constants/endpoints';
 
 export const requestContacts = () => ({
@@ -32,5 +32,10 @@ export const fetchContacts = () => async (dispatch) => {
 
 export const toggleFavorite = (id) => ({
   type: TOGGLE_FAVORITE,
+  id
+})
+
+export const deleteContact = (id) => ({
+  type: DELETE_CONTACT,
   id
 })

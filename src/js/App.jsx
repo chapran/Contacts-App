@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
-import Header from './modules/Header.jsx';
+import Header from './modules/Header';
 import Home from './modules/Home';
 import ContactPreview from './modules/ContactPreview';
 
