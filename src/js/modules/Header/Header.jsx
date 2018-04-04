@@ -10,6 +10,7 @@ let Header = ({ contacts, location }) => {
   let title;
   if (location.pathname.match(/preview/)) title = "Contact preview";
   else if (location.pathname.match(/edit/)) title = "Edit contact";
+  else if (location.pathname.match(/add_contact\/?$/)) title = "Add new contact";
   else title = "All Contacts";
   return (
     <AppBar
@@ -26,7 +27,7 @@ let Header = ({ contacts, location }) => {
               home
             </IconButton>
           </NavLink>
-          <NavLink to='/add_user'>
+          <NavLink to='/add_contact'>
             <IconButton
               iconClassName="material-icons"
               tooltip="Add contact"

@@ -1,4 +1,11 @@
-import { REQUEST_CONTACTS, LOAD_CONTACTS, SHOW_ERROR, TOGGLE_FAVORITE, DELETE_CONTACT } from '_js/constants/actionTypes';
+import {
+  REQUEST_CONTACTS,
+  LOAD_CONTACTS,
+  SHOW_ERROR,
+  TOGGLE_FAVORITE,
+  DELETE_CONTACT,
+  ADD_CONTACT
+} from '_js/constants/actionTypes';
 
 const defaultState = {
   isFetching: false,
@@ -40,6 +47,9 @@ export default function (state = defaultState, action) {
           ...state.contactsList.slice(contactIdx + 1, state.contactsList.length)
         ]
       })
+    case ADD_CONTACT:
+      action.data.id = Date.now();
+      return Object.assign({}, state, { contactsList: [...state.contactsList, action.data] })
     default:
       return state;
   }

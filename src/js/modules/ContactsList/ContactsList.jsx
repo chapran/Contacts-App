@@ -10,18 +10,30 @@ import { Link, withRouter } from 'react-router-dom';
 import Snackbar from 'material-ui/Snackbar';
 
 import Loader from '_js/lib/Loader.jsx';
-import { container } from '_styles/modules/_layout.scss';
 import { buttonToolbar } from './styles.scss';
 
 class ContactsList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { snackBarOpened: false }
+    this.state = {
+      snackBarOpened: false,
+      snackBarMessage: ''
+    }
   }
 
   componentDidUpdate({ contacts }) {
-    if (this.props.contacts.contactsList.length < contacts.contactsList.length) {
-      this.setState({ snackBarOpened: true })
+    const currentList = this.props.contacts.contactsList;
+    console.log(currentList.length, contacts.contactsList.length);
+    if (currentList.length < contacts.contactsList.length) {
+      this.setState({
+        snackBarOpened: true,
+        snackBarMessage: "Contact has been removed"
+      })
+    } else if (currentList.length === contacts.contactsList.length + 1) {
+      this.setState({
+        snackBarOpened: true,
+        snackBarMessage: "Contact has been added"
+      })
     }
   }
 
@@ -30,7 +42,7 @@ class ContactsList extends React.Component {
     if (contacts.isFetching) return <Loader />
     return (
       <Fragment>
-        <Paper className={container} children={
+        <Paper className='container' children={
           <List>
             {contacts.contactsList.map(contact => (
               <Link
@@ -63,7 +75,7 @@ class ContactsList extends React.Component {
         } />
         <Snackbar
           open={this.state.snackBarOpened}
-          message="Contact has been removed"
+          message={this.state.snackBarMessage}
           autoHideDuration={3000}
         />
       </Fragment>

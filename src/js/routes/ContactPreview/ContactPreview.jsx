@@ -10,7 +10,6 @@ import { red700 } from 'material-ui/styles/colors';
 import { List, ListItem } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 
-import { container } from '_styles/modules/_layout.scss';
 import Loader from '_js/lib/Loader.jsx';
 import { toggleFavorite, deleteContact } from '_js/actions';
 import DialogBox from './childComponents/DialogBox.jsx'
@@ -26,7 +25,7 @@ class ContactPreview extends React.Component {
   deleteContact(id) {
     this.closeModal();
     setTimeout(() => {
-      this.props.history.push('/');
+      this.props.history.replace('/');
       this.props.deleteContact(id);
     }, 450);
   }
@@ -45,7 +44,7 @@ class ContactPreview extends React.Component {
     if (contacts.contactsList.length) {
       const contact = contacts.contactsList.find(item => item.id == match.params.id)
       return (
-        <Card className={container}>
+        <Card className='container'>
           <CardTitle
             title={`${contact.firstname} ${contact.lastname}`}
             subtitle={contact.workplace || ''}
@@ -87,6 +86,13 @@ class ContactPreview extends React.Component {
               secondaryText={contact.tel}
               disabled
             />
+            {contact.dateOfBirth &&
+              <ListItem
+                primaryText="Date of birth"
+                secondaryText={(new Date(contact.dateOfBirth)).toISOString().substring(0, 10)}
+                disabled
+              />
+            }
           </List>
           <Divider />
           <CardActions>

@@ -1,4 +1,11 @@
-import { REQUEST_CONTACTS, LOAD_CONTACTS, SHOW_ERROR, TOGGLE_FAVORITE, DELETE_CONTACT } from '_js/constants/actionTypes'
+import {
+  REQUEST_CONTACTS,
+  LOAD_CONTACTS,
+  SHOW_ERROR,
+  TOGGLE_FAVORITE,
+  DELETE_CONTACT,
+  ADD_CONTACT
+} from '_js/constants/actionTypes';
 import { CONTACTS_URL } from '_js/constants/endpoints';
 
 export const requestContacts = () => ({
@@ -9,7 +16,7 @@ export const setError = () => ({
   type: SHOW_ERROR
 })
 
-export const loadContacts = (data) => ({
+export const loadContacts = data => ({
   type: LOAD_CONTACTS,
   data
 })
@@ -18,11 +25,11 @@ export const fetchContacts = () => async (dispatch) => {
   dispatch(requestContacts());
 
   const res = await fetch(CONTACTS_URL);
-  if(res.status !== 200) {
+  if (res.status !== 200) {
     dispatch(setError());
   } else {
     const parsedData = await res.json();
-    
+
     // just a simulation of slower connection
     setTimeout(() => {
       dispatch(loadContacts(parsedData))
@@ -30,12 +37,17 @@ export const fetchContacts = () => async (dispatch) => {
   }
 }
 
-export const toggleFavorite = (id) => ({
+export const toggleFavorite = id => ({
   type: TOGGLE_FAVORITE,
   id
 })
 
-export const deleteContact = (id) => ({
+export const deleteContact = id => ({
   type: DELETE_CONTACT,
   id
+})
+
+export const addContact = data => ({
+  type: ADD_CONTACT,
+  data
 })
