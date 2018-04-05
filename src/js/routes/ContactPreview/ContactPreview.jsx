@@ -11,7 +11,7 @@ import { List, ListItem } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 
 import Loader from '_js/lib/Loader.jsx';
-import { toggleFavorite, deleteContact } from '_js/actions';
+import { toggleFavorite, deleteContact, updateSnackbar } from '_js/actions';
 import DialogBox from './childComponents/DialogBox.jsx'
 
 class ContactPreview extends React.Component {
@@ -22,23 +22,28 @@ class ContactPreview extends React.Component {
     }
     this.openModal = this.openModal.bind(this);
   }
+
   deleteContact(id) {
     this.closeModal();
     setTimeout(() => {
       this.props.history.replace('/');
       this.props.deleteContact(id);
+      this.props.updateSnackbar('Contact has been deleted');
     }, 450);
   }
+  
   closeModal() {
     this.setState({
       modalOpened: false
     })
   }
+
   openModal() {
     this.setState({
       modalOpened: true
     })
   }
+  
   render() {
     const { contacts, match, toggleFavorite } = this.props;
     if (contacts.contactsList.length) {
@@ -132,6 +137,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   deleteContact: id => {
     dispatch(deleteContact(id))
+  },
+  updateSnackbar: (message) => {
+    dispatch(updateSnackbar(message))
   }
 })
 

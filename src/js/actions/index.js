@@ -4,7 +4,9 @@ import {
   SHOW_ERROR,
   TOGGLE_FAVORITE,
   DELETE_CONTACT,
-  ADD_CONTACT
+  ADD_CONTACT,
+  EDIT_CONTACT,
+  UPDATE_SNACKBAR
 } from '_js/constants/actionTypes';
 import { CONTACTS_URL } from '_js/constants/endpoints';
 
@@ -50,4 +52,14 @@ export const deleteContact = id => ({
 export const addContact = data => ({
   type: ADD_CONTACT,
   data
+})
+
+export const editContact = (id, data) => ({
+  type: EDIT_CONTACT,
+  id, data
+})
+
+export const updateSnackbar = message => ({
+  type: UPDATE_SNACKBAR,
+  message
 })

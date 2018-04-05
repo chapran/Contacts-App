@@ -8,6 +8,8 @@ import Header from './modules/Header';
 import Home from './routes/Home';
 import ContactPreview from './routes/ContactPreview';
 import AddContact from './routes/AddContact';
+import EditContact from './routes/EditContact';
+import AppSnackbar from './modules/AppSnackbar';
 
 const App = () => (
   <Provider store={store}>
@@ -18,8 +20,10 @@ const App = () => (
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/preview/:id' exact component={ContactPreview} />
+            <Route path='/edit/:id' exact component={EditContact} />
             <Route path='/add_contact' exact component={AddContact} />
           </Switch>
+          <AppSnackbar />
         </Fragment>
       </BrowserRouter>
     </MuiThemeProvider>

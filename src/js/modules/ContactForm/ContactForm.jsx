@@ -11,7 +11,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import { CardActions } from 'material-ui/Card';
 
-import { textarea } from '../styles.scss';
+import { textarea } from './styles.scss';
 import { Divider } from 'material-ui';
 
 // Validation functions
@@ -21,7 +21,7 @@ const email = value =>
     ? 'Invalid email'
     : undefined;
 
-class AddConctactForm extends Component {
+class ConctactForm extends Component {
 
   render() {
     const { pristine, reset, submitting, handleSubmit } = this.props;
@@ -106,8 +106,8 @@ class AddConctactForm extends Component {
   }
 }
 
-AddConctactForm = reduxForm({
+ConctactForm = reduxForm({
   form: 'addContact'
-})(AddConctactForm)
+})(ConctactForm)
 
-export default AddConctactForm;
+export default ConctactForm;

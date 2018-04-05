@@ -14,4 +14,14 @@
     content: '';
     display: block;
   }
+
+  .topFormContainerImage {
+    max-height: 200px;
+    min-width: initial !important;
+    width: auto !important;
+    display: block;
+    margin: auto;
+    padding-top: 20px;
+  }
+  
 }

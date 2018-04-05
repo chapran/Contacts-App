@@ -4,7 +4,8 @@ import {
   SHOW_ERROR,
   TOGGLE_FAVORITE,
   DELETE_CONTACT,
-  ADD_CONTACT
+  ADD_CONTACT,
+  EDIT_CONTACT
 } from '_js/constants/actionTypes';
 
 const defaultState = {
@@ -40,7 +41,7 @@ export default function (state = defaultState, action) {
       ];
       return Object.assign({}, state, { contactsList })
     case DELETE_CONTACT:
-      const contactIdx = state.contactsList.findIndex(item => item.id === action.id);
+      let contactIdx = state.contactsList.findIndex(item => item.id === action.id);
       return Object.assign({}, state, {
         contactsList: [
           ...state.contactsList.slice(0, contactIdx),
@@ -50,6 +51,15 @@ export default function (state = defaultState, action) {
     case ADD_CONTACT:
       action.data.id = Date.now();
       return Object.assign({}, state, { contactsList: [...state.contactsList, action.data] })
+    case EDIT_CONTACT:
+      contactIdx = state.contactsList.findIndex(item => item.id == action.id);
+      return Object.assign({}, state, {
+        contactsList: [
+          ...state.contactsList.slice(0, contactIdx),
+          Object.assign({}, action.data, { id: action.id }),
+          ...state.contactsList.slice(contactIdx + 1, state.contactsList.length)
+        ]
+      })
     default:
       return state;
   }

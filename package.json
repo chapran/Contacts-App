@@ -1,6 +1,6 @@
 {
   "name": "contacts-app",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Simple React/Redux application for managing contacts",
   "main": "index.js",
   "scripts": {
