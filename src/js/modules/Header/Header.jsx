@@ -11,6 +11,7 @@ let Header = ({ contacts, location }) => {
   if (location.pathname.match(/preview/)) title = "Contact preview";
   else if (location.pathname.match(/edit/)) title = "Edit contact";
   else if (location.pathname.match(/add_contact\/?$/)) title = "Add new contact";
+  else if (location.pathname.match(/favorites\/?$/)) title = "Favorites";
   else title = "All Contacts";
   return (
     <AppBar

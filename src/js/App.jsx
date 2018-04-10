@@ -18,10 +18,10 @@ const App = () => (
         <Fragment>
           <Header />
           <Switch>
-            <Route path='/' exact component={Home} />
             <Route path='/preview/:id' exact component={ContactPreview} />
             <Route path='/edit/:id' exact component={EditContact} />
             <Route path='/add_contact' exact component={AddContact} />
+            <Route path='/' component={Home} />
           </Switch>
           <AppSnackbar />
         </Fragment>

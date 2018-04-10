@@ -15,9 +15,10 @@ class EditContact extends Component {
   }
 
   editContact(values) {
-      this.props.history.push('/');
-      this.props.editContact(this.props.match.params.id, values);
-      this.props.updateSnackbar('Contact has beed edited');
+    const id = this.props.match.params.id;
+    this.props.history.push(`/preview/${id}`);
+    this.props.editContact(id, values);
+    this.props.updateSnackbar('Contact has beed edited');
   }
 
   render() {
@@ -32,7 +33,7 @@ class EditContact extends Component {
         </CardMedia>
         <CardText>
           <Divider />
-          <ConctactForm onSubmit={this.editContact} initialValues={contact}/>
+          <ConctactForm onSubmit={this.editContact} initialValues={contact} />
         </CardText>
       </Card>
     );

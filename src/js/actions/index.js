@@ -6,7 +6,8 @@ import {
   DELETE_CONTACT,
   ADD_CONTACT,
   EDIT_CONTACT,
-  UPDATE_SNACKBAR
+  UPDATE_SNACKBAR,
+  UPDATE_SEARCH
 } from '_js/constants/actionTypes';
 import { CONTACTS_URL } from '_js/constants/endpoints';
 
@@ -62,4 +63,9 @@ export const editContact = (id, data) => ({
 export const updateSnackbar = message => ({
   type: UPDATE_SNACKBAR,
   message
+})
+
+export const updateSearch = text => ({
+  type: UPDATE_SEARCH,
+  text
 })

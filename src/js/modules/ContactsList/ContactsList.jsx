@@ -10,52 +10,76 @@ import { Link, withRouter } from 'react-router-dom';
 
 import Loader from '_js/lib/Loader.jsx';
 import { buttonToolbar } from './styles.scss';
+import { updateSearch } from '_js/actions';
+import SearchBar from '_js/modules/SearchBar';
 
 class ContactsList extends React.Component {
 
   render() {
-    const { contacts, history } = this.props;
+    const { contacts, history, searchState, updateSearch } = this.props;
     if (contacts.isFetching) return <Loader />
+    if (this.props.favorites) {
+      var filteredContacts = contacts.contactsList.filter(item => item.favorite);
+    } else {
+      filteredContacts = contacts.contactsList.filter(item => {
+        const searchRegExp = new RegExp(searchState, 'i');
+        return searchRegExp.test(item.firstname) || searchRegExp.test(item.lastname)
+      });
+    }
     return (
       <Paper className='container' children={
-        <List>
-          {contacts.contactsList.map(contact => (
-            <Link
-              to={`/preview/${contact.id}`}
-              key={contact.id}>
-              <ListItem
-                primaryText={`${contact.firstname} ${contact.lastname}`}
-                leftAvatar={
-                  <Avatar>
-                    {`${contact.firstname.slice(0, 1)}${contact.lastname.slice(0, 1)}`}
-                  </Avatar>}>
-                <div className={buttonToolbar}>
-                  <ActionGrade color={contact.favorite ? deepOrange500 : grey400} />
-                  <IconButton
-                    iconClassName="material-icons"
-                    tooltip="Edit"
-                    tooltipPosition="bottom-right"
-                    tooltipStyles={{ fontSize: '14px' }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      history.push(`/edit/${contact.id}`);
-                    }}>
-                    mode_edit
-                    </IconButton>
-                </div>
-              </ListItem>
-            </Link>
-          ))}
-        </List>
+        <Fragment>
+          {!this.props.favorites &&
+            <SearchBar
+              updateSearch={updateSearch}
+              searchState={searchState} />
+          }
+          <List>
+            {filteredContacts.map(contact => (
+              <Link
+                to={`/preview/${contact.id}`}
+                key={contact.id}>
+                <ListItem
+                  primaryText={`${contact.firstname} ${contact.lastname}`}
+                  leftAvatar={
+                    <Avatar>
+                      {`${contact.firstname.slice(0, 1)}${contact.lastname.slice(0, 1)}`}
+                    </Avatar>}>
+                  <div className={buttonToolbar}>
+                    <ActionGrade color={contact.favorite ? deepOrange500 : grey400} />
+                    <IconButton
+                      iconClassName="material-icons"
+                      tooltip="Edit"
+                      tooltipPosition="bottom-right"
+                      tooltipStyles={{ fontSize: '14px' }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        history.push(`/edit/${contact.id}`);
+                      }}>
+                      mode_edit
+                      </IconButton>
+                  </div>
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Fragment>
       } />
     );
   };
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts
+  contacts: state.contacts,
+  searchState: state.searchState
 })
 
-ContactsList = withRouter(connect(mapStateToProps)(ContactsList));
+const mapDispatchToProps = dispatch => ({
+  updateSearch: text => {
+    dispatch(updateSearch(text))
+  }
+})
+
+ContactsList = withRouter(connect(mapStateToProps, mapDispatchToProps)(ContactsList));
 
 export default ContactsList;

@@ -7,3 +7,5 @@ export const ADD_CONTACT = 'ADD_CONTACT';
 export const EDIT_CONTACT = 'EDIT_CONTACT';
 
 export const UPDATE_SNACKBAR = 'UPDATE_SNACKBAR';
+
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
