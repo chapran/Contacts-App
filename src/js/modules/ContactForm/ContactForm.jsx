@@ -10,9 +10,10 @@ import {
 } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import { CardActions } from 'material-ui/Card';
-
-import { textarea } from './styles.scss';
 import { Divider } from 'material-ui';
+
+import { textarea, hidden, livingPlaceCaption } from './styles.scss';
+import Map from '_js/modules/Map.jsx';
 
 // Validation functions
 const required = value => (value == null ? 'This field is required' : undefined);
@@ -23,8 +24,13 @@ const email = value =>
 
 class ConctactForm extends Component {
 
+  // updateCoords(e) {
+
+  // }
+
   render() {
     const { pristine, reset, submitting, handleSubmit } = this.props;
+    const livingPlace = this.props.initialValues ? this.props.initialValues.livingPlace : undefined;
     return (
       <form
         className='clearfix'
@@ -52,7 +58,7 @@ class ConctactForm extends Component {
         />
         <br />
         <Field
-          name="tel"
+          name="phone"
           type='tel'
           component={TextField}
           floatingLabelText="Phone number"
@@ -81,6 +87,28 @@ class ConctactForm extends Component {
           floatingLabelText="Date of birth"
           format={null}
         />
+        <Field
+          name="livingPlace[latitude]"
+          component={TextField}
+          className={hidden}
+        />
+        <Field
+          name="livingPlace[longitude]"
+          component={TextField}
+          className={hidden}
+        />
+        {livingPlace &&
+          <div>
+            <p className={livingPlaceCaption}>
+              Living place
+            </p>
+            <Map
+              latitude={livingPlace.latitude}
+              longitude={livingPlace.longitude}
+            // onDragEnd={(e) => this.updateCoords(e)}
+            />
+          </div>
+        }
         <br />
         <Field
           name="favorite"
@@ -92,7 +120,7 @@ class ConctactForm extends Component {
         <Divider />
         <CardActions>
           <RaisedButton
-            label="Clear"
+            label={this.props.initialValues ? 'Clear changes' : "Clear"}
             disabled={pristine || submitting}
             onClick={reset} />
           <RaisedButton
@@ -106,8 +134,12 @@ class ConctactForm extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: state.initialValues
+})
+
 ConctactForm = reduxForm({
   form: 'addContact'
-})(ConctactForm)
+}, mapStateToProps)(ConctactForm)
 
 export default ConctactForm;

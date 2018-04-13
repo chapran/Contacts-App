@@ -8,11 +8,12 @@ import { navToolbar } from './styles.scss';
 
 let Header = ({ contacts, location }) => {
   let title;
-  if (location.pathname.match(/preview/)) title = "Contact preview";
-  else if (location.pathname.match(/edit/)) title = "Edit contact";
-  else if (location.pathname.match(/add_contact\/?$/)) title = "Add new contact";
-  else if (location.pathname.match(/favorites\/?$/)) title = "Favorites";
-  else title = "All Contacts";
+  if (location.pathname.match(/\/preview/)) title = "Contact preview";
+  else if (location.pathname.match(/\/edit/)) title = "Edit contact";
+  else if (location.pathname.match(/\/add_contact\/?$/)) title = "Add new contact";
+  else if (location.pathname.match(/\/favorites\/?$/)) title = "Favorites";
+  else if (location.pathname.match(/^\/?$/)) title = "All Contacts";
+  else title = "Not found";
   return (
     <AppBar
       title={title}

@@ -10,6 +10,7 @@ import ContactPreview from './routes/ContactPreview';
 import AddContact from './routes/AddContact';
 import EditContact from './routes/EditContact';
 import AppSnackbar from './modules/AppSnackbar';
+import NotFound from './routes/NotFound';
 
 const App = () => (
   <Provider store={store}>
@@ -18,10 +19,12 @@ const App = () => (
         <Fragment>
           <Header />
           <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/favorites' exact render={(props) => (<Home favorites {...props} />)} />
             <Route path='/preview/:id' exact component={ContactPreview} />
             <Route path='/edit/:id' exact component={EditContact} />
             <Route path='/add_contact' exact component={AddContact} />
-            <Route path='/' component={Home} />
+            <Route component={NotFound} />
           </Switch>
           <AppSnackbar />
         </Fragment>

@@ -1,0 +1,22 @@
+[
+  {
+    'repeat(30, 30)': {
+      id: '{{objectId()}}',
+      firstname: '{{firstName()}}',
+      lastname: '{{surname()}}',
+      workplace: '{{company()}}',
+      email: function (tags) {
+        // Email tag is deprecated, because now you can produce an email as simple as this:
+        return (this.firstname + '.' + this.lastname + '@' + this.workplace + tags.domainZone()).toLowerCase();
+      },
+      phone: '+1 {{phone()}}',
+      address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+      note: '{{lorem(1, "paragraphs")}}',
+      dateOfBirth: '{{moment(this.date(new Date(1950, 0, 1), new Date()))}}',
+      livingPlace: {
+        latitude: '{{floating(-60.000001, 60)}}',
+        longitude: '{{floating(-180.000001, 180)}}'
+      }
+    }
+  }
+]

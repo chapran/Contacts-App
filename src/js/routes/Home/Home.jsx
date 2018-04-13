@@ -18,8 +18,7 @@ class Home extends Component {
     const selectedIndex = this.props.location.pathname === '/favorites' ? 1 : 0;
     return (
       <Fragment>
-        <Route path='/' exact component={ContactsList} />
-        <Route path='/favorites' exact render={() => (<ContactsList favorites />)} />
+        <ContactsList favorites={!!this.props.favorites} />
         <Paper style={{
           position: 'fixed',
           bottom: 0,

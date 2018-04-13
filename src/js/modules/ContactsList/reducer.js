@@ -24,6 +24,9 @@ export default function (state = defaultState, action) {
         fetchFailed: true
       })
     case LOAD_CONTACTS:
+      action.data.forEach(item => {
+        item.dateOfBirth = new Date(item.dateOfBirth)
+      });
       return Object.assign({}, state, {
         isFetching: false,
         contactsList: action.data

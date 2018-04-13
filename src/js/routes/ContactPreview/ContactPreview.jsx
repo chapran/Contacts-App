@@ -12,7 +12,8 @@ import { Link } from 'react-router-dom';
 
 import Loader from '_js/lib/Loader.jsx';
 import { toggleFavorite, deleteContact, updateSnackbar } from '_js/actions';
-import DialogBox from './childComponents/DialogBox.jsx'
+import DialogBox from './childComponents/DialogBox.jsx';
+import Map from '_js/modules/Map.jsx';
 
 class ContactPreview extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ class ContactPreview extends React.Component {
       this.props.updateSnackbar('Contact has been deleted');
     }, 450);
   }
-  
+
   closeModal() {
     this.setState({
       modalOpened: false
@@ -43,7 +44,7 @@ class ContactPreview extends React.Component {
       modalOpened: true
     })
   }
-  
+
   render() {
     const { contacts, match, toggleFavorite } = this.props;
     if (contacts.contactsList.length) {
@@ -88,7 +89,7 @@ class ContactPreview extends React.Component {
             />
             <ListItem
               primaryText="Phone number"
-              secondaryText={contact.tel}
+              secondaryText={contact.phone}
               disabled
             />
             {contact.dateOfBirth &&
@@ -99,6 +100,20 @@ class ContactPreview extends React.Component {
               />
             }
           </List>
+          {(contact.livingPlace.latitude && contact.livingPlace.longitude) &&
+            <div style={{
+              padding: '12px 16px 16px'
+            }}>
+              <p style={{
+                marginTop: '0'
+              }}>
+                Living place
+              </p>
+              <Map
+                latitude={contact.livingPlace.latitude}
+                longitude={contact.livingPlace.longitude} />
+            </div>
+          }
           <Divider />
           <CardActions>
             <Link to={`/edit/${contact.id}`}>
