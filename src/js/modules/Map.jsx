@@ -1,26 +1,24 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
-let Map = props => {
-  const { latitude, longitude, onDragEnd } = props;
-  return (
-    <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{
-        lat: +latitude,
-        lng: +longitude
-      }}
-    >
-      <Marker position={{
-        lat: +latitude,
-        lng: +longitude
-      }}
-        draggable={!!onDragEnd}
-        onDragEnd={onDragEnd}
-      />
-    </GoogleMap>
-  )
-}
+let Map = ({ latitude, longitude, onDragEnd }) => (
+  <GoogleMap
+    defaultZoom={6}
+    defaultCenter={{
+      lat: +latitude,
+      lng: +longitude
+    }}
+  >
+    <Marker position={{
+      lat: +latitude,
+      lng: +longitude
+    }}
+      draggable={!!onDragEnd}
+      onDragEnd={onDragEnd}
+    />
+  </GoogleMap>
+);
+
 
 Map = withScriptjs(withGoogleMap(Map));
 

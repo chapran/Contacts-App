@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import MenuItem from 'material-ui/MenuItem';
 import {
   TextField,
@@ -24,13 +24,14 @@ const email = value =>
 
 class ConctactForm extends Component {
 
-  // updateCoords(e) {
-
-  // }
+  updateCoords(e) {
+    this.props.change('livingPlace[latitude]', e.latLng.lat().toFixed(6))
+    this.props.change('livingPlace[longitude]', e.latLng.lng().toFixed(6))
+  }
 
   render() {
     const { pristine, reset, submitting, handleSubmit } = this.props;
-    const livingPlace = this.props.initialValues ? this.props.initialValues.livingPlace : undefined;
+    const livingPlace = this.props.livingPlace;
     return (
       <form
         className='clearfix'
@@ -97,18 +98,16 @@ class ConctactForm extends Component {
           component={TextField}
           className={hidden}
         />
-        {livingPlace &&
-          <div>
-            <p className={livingPlaceCaption}>
-              Living place
+        <div>
+          <p className={livingPlaceCaption}>
+            Living place
             </p>
-            <Map
-              latitude={livingPlace.latitude}
-              longitude={livingPlace.longitude}
-            // onDragEnd={(e) => this.updateCoords(e)}
-            />
-          </div>
-        }
+          <Map
+            latitude={(livingPlace && livingPlace.latitude) || 0}
+            longitude={(livingPlace && livingPlace.longitude) || 0}
+            onDragEnd={(e) => this.updateCoords(e)}
+          />
+        </div>
         <br />
         <Field
           name="favorite"
@@ -136,10 +135,16 @@ class ConctactForm extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   initialValues: state.initialValues
-})
+});
 
 ConctactForm = reduxForm({
   form: 'addContact'
-}, mapStateToProps)(ConctactForm)
+}, mapStateToProps)(ConctactForm);
+
+const selector = formValueSelector('addContact');
+
+ConctactForm = connect(
+  state => selector(state, "livingPlace[latitude]", "livingPlace[longitude]")
+)(ConctactForm);
 
 export default ConctactForm;
