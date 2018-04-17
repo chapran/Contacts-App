@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -100,7 +99,7 @@ class ContactPreview extends React.Component {
               />
             }
           </List>
-          {(contact.livingPlace.latitude && contact.livingPlace.longitude) &&
+          {contact.livingPlace &&
             <div style={{
               padding: '12px 16px 16px'
             }}>

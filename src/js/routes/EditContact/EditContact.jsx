@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import ConctactForm from '_js/modules/ContactForm';
 import EditUserImg from '_img/edit-user.png';
 import { editContact, updateSnackbar } from '_js/actions';
+import Loader from '_js/lib/Loader.jsx';
 
 class EditContact extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class EditContact extends Component {
   }
 
   render() {
+    if (this.props.isFetching) return <Loader />;    
     const contact = this.props.contacts.find(item => item.id == this.props.match.params.id);
     return (
       <Card className='container'>
@@ -41,7 +43,8 @@ class EditContact extends Component {
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.contactsList
+  contacts: state.contacts.contactsList,
+  isFetching: state.contacts.isFetching
 })
 
 const mapDispatchToProps = dispatch => ({
