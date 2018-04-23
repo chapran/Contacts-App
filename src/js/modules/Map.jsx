@@ -23,7 +23,6 @@ class Map extends React.Component {
         if (status == 'OK') {
           resolve(results[2].formatted_address)
         } else {
-          console.log('Geocode was not successful for the following reason: ' + status);
           resolve(undefined);
         }
       });

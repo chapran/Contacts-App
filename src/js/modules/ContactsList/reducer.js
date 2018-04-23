@@ -25,9 +25,6 @@ export default function (state = defaultState, action) {
         fetchFailed: true
       }
     case LOAD_CONTACTS:
-      action.data.forEach(item => {
-        item.dateOfBirth = new Date(item.dateOfBirth)
-      });
       return {
         ...state,
         isFetching: false,
@@ -44,7 +41,6 @@ export default function (state = defaultState, action) {
         contactsList: state.contactsList.filter(item => item.id !== action.id),
       }
     case ADD_CONTACT:
-      action.data.id = Date.now();
       return { ...state, contactsList: [...state.contactsList, action.data] }
     case EDIT_CONTACT:
       return {

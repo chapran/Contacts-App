@@ -19,10 +19,15 @@ export const setError = () => ({
   type: SHOW_ERROR
 })
 
-export const loadContacts = data => ({
-  type: LOAD_CONTACTS,
-  data
-})
+export const loadContacts = data => {
+  data.forEach(item => {
+    item.dateOfBirth = new Date(item.dateOfBirth)
+  });
+  return {
+    type: LOAD_CONTACTS,
+    data
+  }
+}
 
 export const fetchContacts = () => async (dispatch) => {
   dispatch(requestContacts());
@@ -50,10 +55,13 @@ export const deleteContact = id => ({
   id
 })
 
-export const addContact = data => ({
-  type: ADD_CONTACT,
-  data
-})
+export const addContact = data => {
+  data.id = Date.now();
+  return {
+    type: ADD_CONTACT,
+    data
+  }
+}
 
 export const editContact = (id, data) => ({
   type: EDIT_CONTACT,
