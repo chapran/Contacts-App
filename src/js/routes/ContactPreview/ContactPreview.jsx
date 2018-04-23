@@ -94,7 +94,9 @@ class ContactPreview extends React.Component {
             {contact.dateOfBirth &&
               <ListItem
                 primaryText="Date of birth"
-                secondaryText={(new Date(contact.dateOfBirth)).toISOString().substring(0, 10)}
+                secondaryText={(new Date(contact.dateOfBirth + ' UTC'))
+                  .toISOString()
+                  .substring(0, 10)}
                 disabled
               />
             }
