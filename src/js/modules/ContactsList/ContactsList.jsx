@@ -17,17 +17,18 @@ class ContactsList extends React.Component {
 
   render() {
     const { contacts, history, searchState, updateSearch } = this.props;
-    if (contacts.isFetching) return <Loader />
+    if (contacts.get('isFetching')) return <Loader />
     let filteredContacts;
     if (this.props.favorites) {
-      filteredContacts = contacts.contactsList.filter(item => item.favorite);
+      filteredContacts = contacts.get('contactsList').filter(item => item.favorite);
     } else {
-      filteredContacts = contacts.contactsList.filter(item => {
+      filteredContacts = contacts.get('contactsList').filter(item => {
         const searchRegExp = new RegExp(searchState, 'i');
         return searchRegExp.test(item.firstname) || searchRegExp.test(item.lastname)
       });
     }
-    filteredContacts.sort((a, b) => a.firstname < b.firstname ? -1 : 1);
+    
+    filteredContacts = filteredContacts.sortBy(item => item.firstname);
     return (
       <Paper className='container' children={
         <Fragment>

@@ -43,8 +43,8 @@ class EditContact extends Component {
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.contactsList,
-  isFetching: state.contacts.isFetching
+  contacts: state.contacts.get('contactsList'),
+  isFetching: state.contacts.get('isFetching')
 })
 
 const mapDispatchToProps = dispatch => ({

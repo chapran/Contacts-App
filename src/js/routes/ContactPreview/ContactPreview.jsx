@@ -46,8 +46,8 @@ class ContactPreview extends React.Component {
 
   render() {
     const { contacts, match, toggleFavorite } = this.props;
-    if (contacts.contactsList.length) {
-      const contact = contacts.contactsList.find(item => item.id == match.params.id)
+    if (contacts.get('contactsList').size) {
+      const contact = contacts.get('contactsList').find(item => item.id == match.params.id)
       return (
         <Card className='container'>
           <CardTitle
