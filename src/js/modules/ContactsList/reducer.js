@@ -1,3 +1,5 @@
+import { Map, List } from 'immutable';
+
 import {
   REQUEST_CONTACTS,
   LOAD_CONTACTS,
@@ -8,47 +10,42 @@ import {
   EDIT_CONTACT
 } from '_js/constants/actionTypes';
 
-const defaultState = {
+const defaultState = Map({
   isFetching: false,
   fetchFailed: false,
-  contactsList: []
-};
+  contactsList: List()
+});
 
 export default function (state = defaultState, action) {
   switch (action.type) {
     case REQUEST_CONTACTS:
-      return { ...state, isFetching: true }
+      return state.update("isFetching", value => true)
     case SHOW_ERROR:
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         fetchFailed: true
-      }
-    case LOAD_CONTACTS:
-      return {
-        ...state,
-        isFetching: false,
-        contactsList: action.data
-      }
-    case TOGGLE_FAVORITE:
-      const contactsList = state.contactsList.map(item => {
-        return item.id === action.id ? { ...item, favorite: !item.favorite } : item
       })
-      return { ...state, contactsList }
+    case LOAD_CONTACTS:
+      return state.merge({
+        isFetching: false,
+        contactsList: List(action.data)
+      })
+    case TOGGLE_FAVORITE:
+      return state.update('contactsList', list => list.update(
+        list.findIndex(item => item.id === action.id),
+        item => ({ ...item, favorite: !item.favorite })
+      ))
     case DELETE_CONTACT:
-      return {
-        ...state,
-        contactsList: state.contactsList.filter(item => item.id !== action.id),
-      }
+      return state.update('contactsList', list => list.delete(
+        list.findIndex(item => item.id === action.id)
+      ))
     case ADD_CONTACT:
-      return { ...state, contactsList: [...state.contactsList, action.data] }
+      return state.update('contactsList', list => list.push(action.data))
     case EDIT_CONTACT:
-      return {
-        ...state,
-        contactsList: state.contactsList.map(item => {
-          return item.id === action.id ? { ...action.data, id: action.id } : item
-        })
-      }
+      return state.update('contactsList', list => list.update(
+        list.findIndex(item => item.id === action.id),
+        item => ({ ...action.data, id: action.id })
+      ))
     default:
       return state;
   }
