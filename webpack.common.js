@@ -1,4 +1,4 @@
-var path = require('path'),
+const path = require('path'),
   HTMLWebpackPlugin = require('html-webpack-plugin'),
   CleanWebpackPlugin = require('clean-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -14,7 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ['babel-loader'],
+        use: ['babel-loader', 'eslint-loader'],
         exclude: /node_modules/
       },
       {

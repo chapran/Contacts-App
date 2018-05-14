@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardActions, CardMedia, CardText } from 'material-ui/Card';
+import { Card, CardMedia, CardText } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -9,7 +9,7 @@ import EditUserImg from '_img/edit-user.png';
 import { editContact, updateSnackbar } from '_js/actions';
 import Loader from '_js/lib/Loader.jsx';
 
-class EditContact extends Component {
+class _EditContact extends Component {
   constructor(props) {
     super(props);
     this.editContact = this.editContact.bind(this);
@@ -56,6 +56,6 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-EditContact = withRouter(connect(mapStateToProps, mapDispatchToProps)(EditContact));
+const EditContact = withRouter(connect(mapStateToProps, mapDispatchToProps)(_EditContact));
 
 export default EditContact;

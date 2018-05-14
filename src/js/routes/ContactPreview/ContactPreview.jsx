@@ -14,7 +14,7 @@ import { toggleFavorite, deleteContact, updateSnackbar } from '_js/actions';
 import DialogBox from './childComponents/DialogBox.jsx';
 import Map from '_js/modules/Map.jsx';
 
-class ContactPreview extends React.Component {
+class _ContactPreview extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -140,7 +140,7 @@ class ContactPreview extends React.Component {
       );
     }
     return <Loader />
-  };
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -159,6 +159,6 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-ContactPreview = withRouter(connect(mapStateToProps, mapDispatchToProps)(ContactPreview))
+const ContactPreview = withRouter(connect(mapStateToProps, mapDispatchToProps)(_ContactPreview))
 
 export default ContactPreview;

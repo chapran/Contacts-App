@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { navToolbar } from './styles.scss';
 
-let Header = ({ contacts, location }) => {
+let Header = ({ location }) => {
   let title;
   if (location.pathname.match(/\/preview/)) title = "Contact preview";
   else if (location.pathname.match(/\/edit/)) title = "Edit contact";

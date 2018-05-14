@@ -1,3 +1,5 @@
+/*eslint no-undef: 0*/
+
 import reducer, { defaultState } from './reducer';
 
 describe('Contacts List reducer', () => {

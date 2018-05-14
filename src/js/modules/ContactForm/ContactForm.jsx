@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
-import MenuItem from 'material-ui/MenuItem';
 import {
   TextField,
   Checkbox,
-  DatePicker,
-  SelectField,
+  DatePicker
 } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import { CardActions } from 'material-ui/Card';
@@ -22,7 +20,7 @@ const email = value =>
     ? 'Invalid email'
     : undefined;
 
-class ConctactForm extends Component {
+class _ConctactForm extends Component {
 
   updateCoords(e) {
     this.props.change('livingPlace[latitude]', e.latLng.lat().toFixed(6))
@@ -133,13 +131,13 @@ class ConctactForm extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   initialValues: state.initialValues
 });
 
-ConctactForm = reduxForm({
+let ConctactForm = reduxForm({
   form: 'addContact'
-}, mapStateToProps)(ConctactForm);
+}, mapStateToProps)(_ConctactForm);
 
 const selector = formValueSelector('addContact');
 

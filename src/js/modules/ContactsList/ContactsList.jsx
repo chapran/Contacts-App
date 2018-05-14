@@ -13,7 +13,7 @@ import { buttonToolbar } from './styles.scss';
 import { updateSearch } from '_js/actions';
 import SearchBar from '_js/modules/SearchBar';
 
-class ContactsList extends React.Component {
+class _ContactsList extends React.Component {
 
   render() {
     const { contacts, history, searchState, updateSearch } = this.props;
@@ -69,7 +69,7 @@ class ContactsList extends React.Component {
         </Fragment>
       } />
     );
-  };
+  }
 }
 
 const mapStateToProps = state => ({
@@ -83,6 +83,6 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-ContactsList = withRouter(connect(mapStateToProps, mapDispatchToProps)(ContactsList));
+const ContactsList = withRouter(connect(mapStateToProps, mapDispatchToProps)(_ContactsList));
 
 export default ContactsList;

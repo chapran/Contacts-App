@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardActions, CardMedia, CardText } from 'material-ui/Card';
+import { Card, CardMedia, CardText } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -8,7 +8,7 @@ import ConctactForm from '_js/modules/ContactForm';
 import AddUserImg from '_img/add-user.png';
 import { addContact, updateSnackbar } from '_js/actions';
 
-class AddContact extends Component {
+class _AddContact extends Component {
   constructor(props) {
     super(props);
     this.addContact = this.addContact.bind(this);
@@ -50,6 +50,6 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-AddContact = withRouter(connect(null, mapDispatchToProps)(AddContact));
+const AddContact = withRouter(connect(null, mapDispatchToProps)(_AddContact));
 
 export default AddContact;

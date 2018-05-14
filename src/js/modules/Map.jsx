@@ -1,7 +1,9 @@
+/*eslint no-undef: 0*/
+
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
-class Map extends React.Component {
+class _Map extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -18,9 +20,9 @@ class Map extends React.Component {
   getLocationData(lat, lng) {
     const latlng = new google.maps.LatLng(lat, lng);
     const geocoder = new google.maps.Geocoder();
-    const geocodePromise = new Promise((resolve, reject) => {
+    const geocodePromise = new Promise((resolve) => {
       geocoder.geocode({ 'latLng': latlng }, (results, status) => {
-        if (status == 'OK') {
+        if (status == 'OK' && results) {
           resolve(results[2].formatted_address)
         } else {
           resolve(undefined);
@@ -74,7 +76,7 @@ class Map extends React.Component {
 }
 
 
-Map = withScriptjs(withGoogleMap(Map));
+const Map = withScriptjs(withGoogleMap(_Map));
 
 Map.defaultProps = {
   googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCmx6KYQHUd4rhuWkAiJIEPgOsdzNcDhy4&v=3.exp&libraries=geometry,drawing,places",

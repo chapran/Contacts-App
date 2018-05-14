@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from 'react';
 import ContactsList from '_js/modules/ContactsList';
-import { Route } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import FontIcon from 'material-ui/FontIcon';
@@ -40,6 +39,6 @@ class Home extends Component {
       </Fragment>
     );
   }
-};
+}
 
 export default Home;

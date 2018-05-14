@@ -19,7 +19,7 @@ const defaultState = Map({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case REQUEST_CONTACTS:
-      return state.update("isFetching", value => true)
+      return state.update("isFetching", () => true)
     case SHOW_ERROR:
       return state.merge({
         isFetching: false,
@@ -44,7 +44,7 @@ export default function (state = defaultState, action) {
     case EDIT_CONTACT:
       return state.update('contactsList', list => list.update(
         list.findIndex(item => item.id === action.id),
-        item => ({ ...action.data, id: action.id })
+        () => ({ ...action.data, id: action.id })
       ))
     default:
       return state;
